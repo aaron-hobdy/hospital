@@ -8,13 +8,10 @@ RUN apt-get update && \
 RUN git clone https://github.com/bioinformatics-ua/dicoogle
 RUN (cd dicoogle && mvn install && ln -s /root/dicoogle/dicoogle/target/dicoogle.jar /root/)
 
-COPY ./images /tmp
+COPY ./images /images
 COPY lucene.jar Plugins/lucene.jar
 COPY filestorage.jar Plugins/filestorage.jar
 
-EXPOSE 8080
-EXPOSE 6666
-EXPOSE 1045
+EXPOSE 8080 6666 1045
 
 CMD ["java", "-jar", "dicoogle.jar", "-s"]
-
